@@ -1,0 +1,126 @@
+const int trigPin = 9;
+const int echoPin = 10;
+
+long duration;
+int  distance;
+int safetyDistance;
+void setup(){
+  pinMode(trigPin, OUTPUT);
+pinMode(echoPin, INPUT);
+Serial.begin(115200); 
+  pinMode(2,OUTPUT);
+  pinMode(3,OUTPUT);
+  pinMode(4,OUTPUT);
+  pinMode(5,OUTPUT);
+  pinMode(6,INPUT);
+}
+
+void loop() {
+  digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+duration = pulseIn(echoPin, HIGH);
+distance= duration*0.034/2;
+safetyDistance = distance;
+Serial.println(distance);
+  if(distance > 16){
+  digitalWrite(2,HIGH);
+  analogWrite(3,0);
+  analogWrite(4,129);
+  analogWrite(5,0);
+  }
+  if(distance <= 16){
+    int v = random (1,5);
+    analogWrite(2,0);
+    analogWrite(3,0);
+    analogWrite(4,0);
+    analogWrite(5,0);
+    delay(800);
+     delay(1);
+    if(v == 3){
+    analogWrite(3,200);
+  analogWrite(5,200);
+  delay(400);
+  analogWrite(2,180);
+  analogWrite(3,0);
+  analogWrite(4,0);
+  analogWrite(5,180);
+  delay(500);
+    }  
+  if(v == 4){
+    analogWrite(3,200);
+  analogWrite(5,200);
+  delay(400);
+    analogWrite(2,0);
+  analogWrite(3,180);
+  analogWrite(4,180);
+  analogWrite(5,0);
+  delay(500);
+    }
+     if(v == 1){
+    analogWrite(3,200);
+  analogWrite(5,200);
+  delay(400);
+  analogWrite(2,180);
+  analogWrite(3,0);
+  analogWrite(4,0);
+  analogWrite(5,180);
+  delay(300);
+    }  
+  if(v == 2){
+    analogWrite(3,200);
+  analogWrite(5,200);
+  delay(400);
+    analogWrite(2,0);
+  analogWrite(3,180);
+  analogWrite(4,180);
+  analogWrite(5,0);
+  delay(300);
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
